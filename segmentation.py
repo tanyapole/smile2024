@@ -7,11 +7,17 @@ import torchvision.transforms as TF
 import utils
 
 
+def _get_image_names(fldr):
+    files = (fldr / 'images').iterdir()
+    files = filter(lambda f: f.suffix.lower() in ['.png', '.jpg', '.jpeg'], files)
+    return sorted(map(lambda f: f.name, files))
+
+
 class SegmentationDataset:
     def __init__(self, fldr, num_classes):
         self.num_classes = num_classes
         self.fldr = Path(fldr)
-        self.names = sorted(os.listdir(self.fldr / 'images'))
+        self.names = _get_image_names(self.fldr)
         self._img_tfm = TF.Compose([
             TF.ToTensor(), 
             TF.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))

@@ -11,4 +11,4 @@ def create_model():
     )
 
 def create_optimizer(model):
-    return torch.optim.SGD(model.parameters(), lr=1e-1)
+    return torch.optim.SGD(model.parameters(), lr=5e-1)
