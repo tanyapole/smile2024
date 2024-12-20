@@ -20,7 +20,7 @@ class SegmentationDataset:
         self.names = _get_image_names(self.fldr)
         self._img_tfm = TF.Compose([
             TF.ToTensor(), 
-            TF.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+            TF.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
         ])
 
     def __len__(self): return len(self.names)
